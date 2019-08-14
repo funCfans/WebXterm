@@ -13,10 +13,4 @@ Web SSH 终端的基本原理：
 * 前端主要使用xterm.js：https://github.com/xtermjs/xterm.js
 * 参考Python实现：https://github.com/huashengdun/webssh
 
-目前还有一些问题没来得及完成：
-* 为了方便调试，目标服务器连接的一些参数暂时写死的，没有从Index页面获取。
-* ~~websocket与jsch的交互还有一些基本细节没做好，如终端访问时候的前缀显示和光标停留位置，像这样 [xxx@hostname]$~~
-* 实现和测试更多的模拟终端工具的一些操作细节，例如tab键自动补全，Ctr+C中断操作等等。。。
-
-
-# WebXterm
+在给前端xterm.js的url填ws://localhost:10003/ssh/1?hostname={你自己想要的ip}&port={端口号默认是22}&username={用户名}&password={密码}&rows={要在终端显示多少行}&cols={要在终端显示多少列}
