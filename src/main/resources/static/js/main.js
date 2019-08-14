@@ -34,8 +34,6 @@ jQuery(function($){
     var geometry = current_geometry(),
         cols = geometry.cols,
         rows = geometry.rows;
-    // console.log([cols, rows]);
-    // console.log(term.geometry);
 
     if (cols !== term.geometry[0] || rows !== term.geometry[1]) {
       console.log('resizing term');
@@ -55,10 +53,16 @@ jQuery(function($){
       return;
     }
 
-    var ws_url = window.location.href.replace('http', 'ws'),
-        join = (ws_url[ws_url.length-1] === '/' ? '' : '/'),
-        url = ws_url + join + 'ssh/' + msg.id;
-    console.log(url);
+    var ws_url = window.location.href.replace('http', 'ws').split('/?')[0] + "/",
+        join = (ws_url[ws_url.length-1] === '/' ? '' : '/');
+    var hname = document.querySelector('[name="hostname"]').value;
+    var por = document.querySelector('[name="port"]').value;
+    var username = document.querySelector('[name="username"]').value;
+    var password = document.querySelector('[name="password"]').value;
+    var url = ws_url + 'ssh/' + msg.id + '?hostname=' + hname + "&port=" + por + "&username=" + username+ "&password=" + password;
+    //url = ws_url + '/ssh/' + msg.id + join;
+    console.log(join);
+    console.log(ws_url);
     var sock = new window.WebSocket(url),
         encoding = msg.encoding,
         terminal = document.getElementById('#terminal'),
